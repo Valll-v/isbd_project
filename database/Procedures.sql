@@ -3,7 +3,7 @@ CREATE PROCEDURE menaceFromBlacklist
 	menaceNickname VARCHAR(20),
 	blacklistID INTEGER,
 	description VARCHAR(100),
-	currentTown VARCHAR(1)
+	currentTown INTEGER
 ) AS
 $$
 	INSERT INTO menace
@@ -36,3 +36,47 @@ $$
 	);
 $$
 LANGUAGE SQL;
+
+
+-- Проверка перед созданием профиля героя, что человек с данным id успешно прошел phys и intelligent экзамен, если
+-- without_exam == true проверка не происходит, человек успешно сдал экз если по phys >= 70 и intelligent >= 70
+CREATE PROCEDURE checkExamToAddHeroProfile(
+ person INTEGER,
+ hero_nickname VARCHAR(30),
+ auth_date timestamp,
+ without_exam bool,
+ extra_information varchar(1024)
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    found_exam_auth_id INTEGER;
+    passed_both BOOLEAN;
+BEGIN
+    IF without_exam THEN
+        INSERT INTO hero_profile(person_id, exam_auth_id, nickname, auth_date, without_exam, extra_information)
+        VALUES (person, NULL, hero_nickname, auth_date, without_exam, extra_information);
+    ELSE
+        -- Нахождение exam_auth_id для данного person_id
+        SELECT id INTO found_exam_auth_id
+        FROM exam_auth
+        WHERE person_id = person;
+
+        -- Проверка наличия двух необходимых результатов экзаменов
+        SELECT (COUNT(*) = 2) INTO passed_both
+        FROM exam_result
+        WHERE auth_id = found_exam_auth_id AND (
+              (type = 'phys' AND result >= 70)
+           OR (type = 'intelligent' AND result >= 70)
+        )
+        GROUP BY type;
+
+        IF passed_both THEN
+            INSERT INTO hero_profile(person_id, exam_auth_id, nickname, auth_date, without_exam, extra_information)
+            VALUES (person, found_exam_auth_id, hero_nickname, auth_date, without_exam, extra_information);
+        ELSE
+            RAISE EXCEPTION 'Не был сдан один из этапов экзамена';
+        END IF;
+    END IF;
+END;
+$$;

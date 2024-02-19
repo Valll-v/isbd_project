@@ -30,3 +30,5 @@ DROP TYPE IF EXISTS exam_result_type;
 DROP TYPE IF EXISTS tournament_fight_result;
 
 DROP PROCEDURE IF EXISTS menaceFromBlacklist;
+DROP PROCEDURE IF EXISTS checkExamToAddHeroProfile;
+DROP PROCEDURE IF EXISTS menaceFromBlacklist;

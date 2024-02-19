@@ -51,7 +51,7 @@ CREATE TABLE dojo
 (
     id SERIAL PRIMARY KEY,
     name VARCHAR(32) UNIQUE,
-    leader_id INTEGER UNIQUE
+    leader_id INTEGER
 );
 
 CREATE TABLE person
