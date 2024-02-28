@@ -31,10 +31,6 @@ ALTER TABLE blacklist
     ADD FOREIGN KEY (person_id) REFERENCES person (id);
 ALTER TABLE menace
     ADD FOREIGN KEY (blacklist_id) REFERENCES blacklist (id);
-ALTER TABLE menace
-    ADD FOREIGN KEY (view_town_id) REFERENCES town (id);
-ALTER TABLE menace
-    ADD FOREIGN KEY (current_town_id) REFERENCES town (id);
 ALTER TABLE menace_record
     ADD FOREIGN KEY (responsible_id) REFERENCES goverment_profile (id);
 ALTER TABLE menace_record
@@ -74,4 +70,3 @@ ALTER TABLE tournament_fight_record
 
 ALTER TABLE tournament_fight_record
     ADD FOREIGN KEY (fight_id) REFERENCES tournament_fight (id);
-

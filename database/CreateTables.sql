@@ -1,50 +1,50 @@
 CREATE TYPE menace_status AS ENUM (
-	'death',
-	'alive',
-	'hidden'
+        'death',
+        'alive',
+        'hidden'
 );
 
 CREATE TYPE hero_fight_status AS ENUM (
-	'announced',
-	'progress',
-	'win',
-	'lost'
+        'announced',
+        'progress',
+        'win',
+        'lost'
 );
 
 CREATE TYPE tournament_status AS ENUM (
-	'announced',
-	'progress',
-	'finished',
-	'canceled'
+        'announced',
+        'progress',
+        'finished',
+        'canceled'
 );
 
 CREATE TYPE menace_level AS ENUM (
-	'tiger',
-	'demon',
-	'dragon',
-	'god'
+        'tiger',
+        'demon',
+        'dragon',
+        'god'
 );
 
 CREATE TYPE exam_result_type AS ENUM (
-	'phys',
-	'intelligent'
+        'phys',
+        'intelligent'
 );
 
 CREATE TYPE tournament_fight_status AS ENUM (
-	'announced',
-	'progress',
-	'finished'
+        'announced',
+        'progress',
+        'finished'
 );
 
 CREATE TYPE tournament_fight_result AS ENUM (
-	'w1',
-	'w2'
+        'w1',
+        'w2'
 );
 
 CREATE TABLE town
 (
-	id SERIAL PRIMARY KEY,
-	code VARCHAR(1) UNIQUE
+        id SERIAL PRIMARY KEY,
+        code VARCHAR(1) UNIQUE
 );
 
 CREATE TABLE dojo

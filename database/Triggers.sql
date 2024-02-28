@@ -47,15 +47,12 @@ create trigger set_ranking_edit_date
     before update on ranking for each row
     execute function set_edit_date_trigger();
 
-
-
-
-
 -- При добавлении записи person поле photo_url заполняется на основе fullname и id человека
 create or replace function set_photo_url_trigger()
     returns trigger as $$
 begin
-    new.photo_url := concat('http://localhost:8888/media/', lower(new.fullname), new.id, '.jpg');
+    new.photo_url := concat('https://people.com/', lower(new.fullname), new.id, '.jpg');
+    new.photo_url := replace(new.photo_url, ' ', '_');
     return new;
 end $$ language plpgsql;
 
@@ -68,7 +65,8 @@ create trigger set_photo_url
 create or replace function set_website_url_trigger()
     returns trigger as $$
 begin
-    new.website_url := concat('http://localhost:8888/media/', lower(new.nickname), '.com');
+    new.website_url := concat('https://heroes.com/', lower(new.nickname), new.id, '.jpg');
+    new.website_url := replace(new.website_url, ' ', '_');
     return new;
 end $$ language plpgsql;
 
