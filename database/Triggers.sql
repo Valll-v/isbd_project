@@ -51,7 +51,7 @@ create trigger set_ranking_edit_date
 create or replace function set_photo_url_trigger()
     returns trigger as $$
 begin
-    new.photo_url := concat('https://people.com/', lower(new.fullname), new.id, '.jpg');
+    new.photo_url := concat('/media/persons/', lower(new.fullname), new.id, '.jpg');
     new.photo_url := replace(new.photo_url, ' ', '_');
     return new;
 end $$ language plpgsql;
@@ -65,8 +65,7 @@ create trigger set_photo_url
 create or replace function set_website_url_trigger()
     returns trigger as $$
 begin
-    new.website_url := concat('https://heroes.com/', lower(new.nickname), new.id, '.jpg');
-    new.website_url := replace(new.website_url, ' ', '_');
+    new.website_url := concat('/heroes/', new.id);
     return new;
 end $$ language plpgsql;
 

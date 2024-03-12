@@ -127,7 +127,8 @@ def create_heroes(cursor: Cursor):
             INSERT INTO 
                 person 
             VALUES 
-                (DEFAULT, '{hero[3]}', {random.choice(TOWNS_ID)}, NULL, NULL, NULL)
+                (DEFAULT, '{hero[3]}', {random.choice(TOWNS_ID)}, 
+                NULL, NULL, NULL)
             RETURNING person.id;
             '''
             cursor.execute(query)
@@ -142,7 +143,16 @@ def create_heroes(cursor: Cursor):
             RETURNING hero_profile.id;
             '''
             cursor.execute(query)
-            HEROES_ID.append(cursor.fetchone()[0])
+            hero_id = cursor.fetchone()[0]
+            HEROES_ID.append(hero_id)
+            query = f'''
+            INSERT INTO 
+                ranking 
+            VALUES 
+                (DEFAULT, '{hero_id}', '{random.choice(['S', 'A', 'B', 'C'])}', 
+                100000, '2021-01-01', NULL, true);
+            '''
+            cursor.execute(query)
         except Exception as e:
             print(e)
 

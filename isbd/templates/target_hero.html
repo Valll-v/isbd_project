@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    {% if hero.death_date != None %}
+    body {
+        background-color: grey;
+    }
+    {% endif %}
+    #notFound {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        color: #662422;
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+    }
+    #hero {
+        padding-top: 20px;
+        padding-left: 20px;
+        display: flex;
+        justify-content: center;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    #heroInfo {
+        color: #662422;
+        font-size: 32px;
+        font-weight: 700;
+        {% if hero.death_date != None %}
+        line-height: 40px;
+        {% else %}
+        line-height: 80px;
+        {% endif %}
+        text-align: justify;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 720px;
+        height: 480px;
+    }
+    img {
+        width: 480px;
+        height: 480px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {% if hero != None %}
+        <div id="hero">
+            <img src="{{hero.photo_url}}">
+            <div id="heroInfo">
+                <p>Псевдоним: {{ hero.nickname }}</p>
+                <p>Реальное имя: {{ hero.fullname }}</p>
+                <p>Рейтинг героя: {{ hero.raiting }}</p>
+                <p>Ранг: {{ hero.rank }}</p>
+                {% if hero.death_date != None %}
+                <p>Погиб {{ hero.death_date }}. Вечная память!</p>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div id="notFound">
+            Кажется, герой не прошел регистрацию до конца, либо его рейтинг
+            находится в обработке.
+        </div>
+    {% endif %}
+{% endblock %}

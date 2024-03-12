@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    .menace {
+        display: flex;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+    }
+    .menaceInfo {
+        color: #662422;
+        font-size: 40px;
+        font-weight: 700;
+        text-align: 60px;
+        width: 1080px;
+    }
+    img {
+        width: 220px;
+        height: 220px;
+    }
+    .menaceImage {
+        margin-left: 20px;
+        margin-right: 20px;
+        text-align: center;
+        color: #662422;
+        font-size: 32px;
+        font-weight: 700;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {% for menace in menaces %}
+        <div class="menace">
+            <div class="menaceInfo">
+                <p id="menaceId"> Индивидуальный номер угрозы: {{ menace.id }}</p>
+                <p id="name"> Никнейм: {{ menace.name }} </p>
+                <p id="status"> Статус: {{ menace.status }} </p>
+            </div>
+            <div class="menaceImage">
+                <img src="/media/ui/{{ menace.level }}.png">
+                <p id="level"> Уровень: {{ menace.level }} </p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <title>One Punch Man</title>
+    <style>
+        .menu {
+            font-size: 20px;
+            color: #662422;
+        }
+        body {
+            margin: 0;
+            margin-bottom: 100px;
+            padding: 0;
+            background-color: #e9bf5c;
+            max-width: 100%;
+        }
+        #header, #footer {
+            color: #662422;
+            text-align: center;
+            background-color: #aa8238;
+            width: 100%;
+            padding-top: 11px;
+            padding-left: 22px;
+            padding-bottom: 11px;
+        }
+        #menu {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #footer {
+            bottom: 0;
+            height: 80px;
+            position: fixed;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+        {% block header %}
+            <h1 id="headerTitle">Официальный сайт по работе с героями</h1>
+            <div id="menu">
+                {% block menu %}
+                <a class="menu" href="/heroes">Реестр героев</a>
+                <a class="menu" href="/menaces">Реестр злодеев</a>
+                <a class="menu" href="/tournaments">Турниры</a>
+                <a class="menu" href="/">На главную</a>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        {% block footer %}
+        <div id="footer">
+            <h1 id="footerContent">© 2024 Valll-v</h1>
+        </div>
+        {% endblock %}
+    </footer>
+</body>
+</html>

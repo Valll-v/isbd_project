@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 class MenaceStatus(models.TextChoices):
@@ -72,11 +73,19 @@ class Dojo(models.Model):
 
 class Person(models.Model):
     id = models.AutoField(primary_key=True)
-    fullname = models.CharField(max_length=32)
+    fullname = models.CharField(
+        max_length=32,
+        validators=[
+            RegexValidator('^[a-zA-Z0-9]*$',
+                           message='fullname must be Alphanumeric',
+                           code='invalid_fullname',
+                           ),
+        ],
+    )
     town_id = models.IntegerField()
     photo_url = models.CharField(max_length=2083, null=True, blank=True)
     death_date = models.DateTimeField(null=True, blank=True)
-    dojo_id = models.IntegerField()
+    dojo_id = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.fullname

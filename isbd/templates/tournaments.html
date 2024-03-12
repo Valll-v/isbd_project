@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    .tournament {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+    }
+    .tournamentInfo {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+        text-align: justify;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {% for tournament in tournaments %}
+        <div class="tournament">
+            <div class="tournamentInfo">
+                <p id="tournamentId"> Индивидуальный номер турнира: {{ tournament.id }}</p>
+                <p id="status"> Статус: {{ tournament.status }} </p>
+                <p id="description"> {{ tournament.description }} </p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    .hero {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+    }
+    p, #website_url_href {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {% for hero in heroes %}
+        <div class="hero">
+            <p id="heroId"> Индивидуальный номер героя: {{ hero.id }}</p>
+            <p id="nickname"> Никнейм: {{ hero.nickname }} </p>
+            <p><a id="website_url_href" href="{{ hero.website_url }}">Личная страница</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}

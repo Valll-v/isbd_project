@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Hello Django</title>
-</head>
-<body>
-    <h1>Hello for OnePunchMan website!!!</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    #indexContent {
+        padding-top: 20px;
+        padding-left: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    #indexImage {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+    }
+    #indexInfo {
+        color: #662422;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 80px;
+        text-align: justify;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    <div id="indexContent">
+        <img id="indexImage" src="/media/ui/s-class-heroes.jpg">
+        <p id="indexInfo">Вы находитесь на центральном сайте, на котором вы можете получить любую геройскую и не только информацию.
+        Также узнать ближайшие новости и информацию о турнирах. Если вы хотите зарегистрироваться на турнир или стать героем, вам также сюда!</p>
+    </div>
+{% endblock %}

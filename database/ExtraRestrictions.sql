@@ -38,10 +38,10 @@ alter table tournament_fight_record
 -- http://heroes/onepunchman.com
 alter table hero_profile
     add constraint check_regex_constraint
-        check (hero_profile.website_url ~ '^http[s]?:\/\/heroes.com\/([a-z0-9_\.\-]+).jpg');
+        check (hero_profile.website_url ~ '\/heroes\/([a-z0-9_\.\-]+)');
 
 -- У фотографий людей уникальные url, которые имеют ограничение на формат
 -- http://people/ahmed123.jpg
 alter table person
     add constraint check_regex_constraint
-        check (person.photo_url ~ '^http[s]?:\/\/people.com\/([a-z0-9_\.\-]+).jpg$');
+        check (person.photo_url ~ '\/media\/persons\/([a-z0-9_\.\-]+).jpg$');
