@@ -293,14 +293,14 @@ def create_exams(cursor):
 
 
 def create_tournaments(cursor):
-    for i in range(10):
+    for i in range(9):
         try:
             query = f'''
             INSERT INTO 
                 tournament 
             VALUES 
-                (DEFAULT, '2021-01-01', '{random.choice(T_STATUSES)}', 
-                NULL, {random.choice(GOV_ID)})
+                (DEFAULT, '202{i + 1}-01-01', 'Ура! Турнир номер {i + 1}', 
+                '{random.choice(T_STATUSES)}', {random.choice(GOV_ID)})
             RETURNING tournament.id;
             '''
             cursor.execute(query)
