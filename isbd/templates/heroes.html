@@ -2,27 +2,43 @@
 {% block head %}
 {{ block.super }}
 <style>
-    .hero {
+    .all {
         border-radius: 8px;
         border: 1px solid #ddd;
         border-color: #662422;
         padding-left: 20px;
         padding-right: 20px;
         margin-top: 20px;
+        display: flex;
+        justify-content: space-evenly;
     }
     p, #website_url_href {
         color: #662422;
         font-size: 24px;
         font-weight: 700;
     }
+    #leader {
+        color: #FFD700;
+    }
 </style>
+{% endblock %}
+{% block menu %}
+    <a class="menu" href="/exams">Экзамены</a>
+    <a class="menu" href="/">На главную</a>
 {% endblock %}
 {% block content %}
     {% for hero in heroes %}
-        <div class="hero">
-            <p id="heroId"> Индивидуальный номер героя: {{ hero.id }}</p>
-            <p id="nickname"> Никнейм: {{ hero.nickname }} </p>
-            <p><a id="website_url_href" href="{{ hero.website_url }}">Личная страница</a></p>
+        <div class="all">
+            <div class="hero">
+                <p id="heroId"> Индивидуальный номер героя: {{ hero.id }}</p>
+                <p id="nickname"> Никнейм: {{ hero.nickname }} </p>
+                <p><a id="website_url_href" href="{{ hero.website_url }}">Личная страница</a></p>
+            </div>
+            <div class="leader">
+                {% if hero.leader %}
+                <p id="leader">ЛИДЕР</p>
+                {% endif %}
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

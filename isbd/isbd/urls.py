@@ -24,9 +24,20 @@ from app import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index),
+    path("persons", views.PersonsView.as_view(), name="persons-view"),
     path("heroes", views.HeroesView.as_view(), name="heroes-view"),
     path("menaces", views.MenacesView.as_view(), name="menaces-view"),
     path("tournaments", views.TournamentsView.as_view(), name="tournaments-view"),
-    path("heroes/<int:hero_id>", views.target_hero),
+    path("exams/<int:exam_id>", views.TargetExamView.as_view(), name="auth-target-view"),
+    path("exams", views.ExamsView.as_view(), name="exams-view"),
+    path("create_exam", views.CreateExamView.as_view(), name="create-exam-view"),
+    path("exam_auths/<int:exam_id>", views.ExamAuthsView.as_view(), name="exam-auths-view"),
+    path("exam_results/<int:auth_id>", views.ExamResultsView.as_view(), name="exam-results-view"),
+    path("exam_register", views.ExamRegisterView.as_view(), name="exam-register-view"),
+    path("make_hero", views.CreateHeroView.as_view(), name="make-hero-view"),
+    path("heroes/<int:hero_id>", views.target_hero, name="target-hero-view"),
+    path("create_result", views.CreateResultView.as_view(), name="create-result-view"),
+    path("update_rank", views.UpdateRankView.as_view(), name="update-rank-view"),
+    path("upgrade_rank/<int:hero_id>", views.upgrade_hero_rank),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

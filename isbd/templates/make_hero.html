@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    form {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    input[type="text"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    label {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    #error {
+        color: red;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    input[type="submit"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    input[type="checkbox"] {
+        border-radius: 8px;
+        border: 3px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        accent-color: #e9bf5c;
+        height: 100px;
+        width: 100px;
+    }
+</style>
+{% endblock %}
+{% block menu %}
+    <a class="menu" href="/exams">Все экзамены</a>
+    <a class="menu" href="/exam_register">Зарегистрироваться на экзамен!</a>
+    <a class="menu" href="/">На главную</a>
+{% endblock %}
+{% block content %}
+    <form action="/make_hero" method="post">
+        <p><label for="person_id"> Индивидуальный номер физического лица </label></p>
+        <p><input id="person_id" name="person_id" type="text" required></p>
+        <p><label for="hero_nickname"> Псевдоним героя </label></p>
+        <p><input id="hero_nickname" name="hero_nickname" type="text" maxlength="30" required></p>
+        <p><label for="extra_information"> Дополнительная информация </label></p>
+        <p><input id="extra_information" name="extra_information" type="text" maxlength="1024" required></p>
+        <p><label for="without_exam"> Принять без экзамена </label></p>
+        <p><input id="without_exam" name="without_exam" type="checkbox"></p>
+        <p><input type="submit" value="Принять героя!"></p>
+    </form>
+    {% if error %}
+        <p id="error">{{ error }}</p>
+    {% endif %}
+{% endblock %}

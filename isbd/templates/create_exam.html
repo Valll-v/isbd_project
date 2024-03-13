@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    form {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    input[type="text"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    label {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    #error {
+        color: red;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    input[type="submit"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    input[type="datetime-local"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+</style>
+{% endblock %}
+{% block menu %}
+    <a class="menu" href="/exams">Все экзамены</a>
+    <a class="menu" href="/exam_register">Зарегистрироваться на экзамен!</a>
+    <a class="menu" href="/">На главную</a>
+{% endblock %}
+{% block content %}
+    <form action="/create_exam" method="post">
+        <p><label for="person_id"> Индивидуальный номер ответственного </label></p>
+        <p><input id="person_id" name="person_id" type="text" required></p>
+        <p><label for="datetime_exam"> Дата экзамена </label></p>
+        <p><input id="datetime_exam" name="datetime_exam" type="datetime-local" min="2024-03-14T00:00" required></p>
+        <p><input type="submit" value="Создать экзамен!"></p>
+    </form>
+    {% if error %}
+        <p id="error">Ошибка. У вас нет прав на создание экзамена.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    .person {
+        display: flex;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+    }
+    .personInfo {
+        color: #662422;
+        font-size: 40px;
+        font-weight: 700;
+        text-align: 60px;
+        width: 1080px;
+    }
+    img {
+        width: 220px;
+        height: 220px;
+    }
+    .personImage {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+    {% for person in persons %}
+        <div class="person">
+            <div class="personInfo">
+                <p id="personId"> Индивидуальный номер личности: {{ person.id }}</p>
+                <p id="name"> Имя: {{ person.fullname }} </p>
+                <p id="profession">
+                    Должность: {{ person.post }}
+                </p>
+            </div>
+            <img class="personImage" src="{{ person.photo_url }}">
+        </div>
+    {% endfor %}
+{% endblock %}

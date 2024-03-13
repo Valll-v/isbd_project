@@ -125,7 +125,7 @@ class Permission(models.Model):
 
 class PermissionGovermentProfile(models.Model):
     permission_id = models.IntegerField(primary_key=True)
-    goverment_employee_id = models.IntegerField(unique=True)
+    goverment_employee_id = models.IntegerField()
 
     class Meta:
         managed = False

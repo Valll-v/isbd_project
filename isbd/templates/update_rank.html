@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    form {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    input[type="text"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    label {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    #error {
+        color: red;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    input[type="submit"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+</style>
+{% endblock %}
+{% block menu %}
+    <a class="menu" href="/heroes">Все герои</a>
+    <a class="menu" href="/">На главную</a>
+{% endblock %}
+{% block content %}
+    <form action="/update_rank" method="post">
+        <p><label for="hero_id"> Индивидуальный номер героя </label></p>
+        <p><input id="hero_id" name="hero_id" type="text" required></p>
+        <p><label for="rank"> Ранг </label></p>
+        <p><input id="rank" name="rank" type="text" required></p>
+        <p><label for="rating"> Рейтинг </label></p>
+        <p><input id="rating" name="rating" type="text" required></p>
+        <p><input type="submit" value="Обновить ранг!"></p>
+    </form>
+    {% if error %}
+        <p id="error"> {{ error }} </p>
+    {% endif %}
+{% endblock %}

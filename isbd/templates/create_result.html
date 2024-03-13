@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    form {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    input[type="text"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    label {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    #error {
+        color: red;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    input[type="submit"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+</style>
+{% endblock %}
+{% block menu %}
+    <a class="menu" href="/exams">Все экзамены</a>
+    <a class="menu" href="/exam_register">Зарегистрироваться на экзамен!</a>
+    <a class="menu" href="/">На главную</a>
+{% endblock %}
+{% block content %}
+    <form action="/create_result" method="post">
+        <p><label for="auth_id"> Регистрационный номер </label></p>
+        <p><input id="auth_id" name="auth_id" type="text" required></p>
+        <p><label for="type"> Тип экзамена (phys или intelligent) </label></p>
+        <p><input id="type" name="type" type="text" required></p>
+        <p><label for="result"> Результат </label></p>
+        <p><input id="result" name="result" type="text" min="0" max="100" required></p>
+        <p><label for="inspector_id"> Подпись инспектора (его номер) </label></p>
+        <p><input id="inspector_id" name="inspector_id" type="text" required></p>
+        <p><input type="submit" value="Принять героя!"></p>
+    </form>
+    {% if error %}
+        <p id="error"> {{ error }} </p>
+    {% endif %}
+{% endblock %}

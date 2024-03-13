@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block head %}
+{{ block.super }}
+<style>
+    form {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    input[type="text"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+    label {
+        color: #662422;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    #error {
+        color: red;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    input[type="submit"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #662422;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 24px;
+        color: #662422;
+        background-color: #e9bf5c;
+    }
+
+</style>
+{% endblock %}
+{% block menu %}
+    <a class="menu" href="/exams">Все экзамены</a>
+    <a class="menu" href="/">На главную</a>
+{% endblock %}
+{% block content %}
+    <form action="/exam_register" method="post">
+        <p><label for="person_id"> Индивидуальный номер пользователя </label></p>
+        <p><input id="person_id" name="person_id" type="text" required></p>
+        <p><label for="exam_id"> Номер экзамена </label></p>
+        <p><input id="exam_id" name="exam_id" type="text" required></p>
+        <p><input type="submit" value="Зарегистрироваться!"></p>
+    </form>
+    {% if error %}
+        <p id="error">Ошибка. Перепроверьте номер экзамена и ваш индивидуальный номер</p>
+    {% endif %}
+{% endblock %}

@@ -31,7 +31,7 @@
         color: #662422;
         font-size: 32px;
         font-weight: 700;
-        {% if hero.death_date != None %}
+        {% if leader %}
         line-height: 40px;
         {% else %}
         line-height: 80px;
@@ -51,13 +51,46 @@
         border: 1px solid #ddd;
         border-color: #662422;
     }
+    #add, #updateRank {
+        color: #662422;
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+    }
+    .leader {
+        color: #FFD700;
+    }
+    input[type="submit"] {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        border-color: #FFD700;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 20px;
+        font-size: 32px;
+        font-weight: 700;
+        color: #FFD700;
+        background-color: #e9bf5c;
+    }
 </style>
 {% endblock %}
 {% block content %}
+    <p id="add"><a id="updateRank" href="/update_rank" >Обновить рейтинг</a></p>
     {% if hero != None %}
         <div id="hero">
             <img src="{{hero.photo_url}}">
             <div id="heroInfo">
+                {% if leader %}
+                <p class="leader">ЛИДЕР</p>
+                {% if hero.rank == 'S' %}
+                <p class="leader">САМЫЙ СИЛЬНЫЙ ГЕРОЙ!</p>
+                {% else %}
+                <form action="/upgrade_rank/{{ hero.id }}" method="post">
+                    <input type="hidden" id="hero_rank" name="hero_rank" value="{{ hero.rank }}">
+                    <p><input type="submit" value="Обновить ранг!"></p>
+                </form>
+                {% endif %}
+                {% endif %}
                 <p>Псевдоним: {{ hero.nickname }}</p>
                 <p>Реальное имя: {{ hero.fullname }}</p>
                 <p>Рейтинг героя: {{ hero.raiting }}</p>

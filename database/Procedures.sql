@@ -68,8 +68,7 @@ BEGIN
         WHERE auth_id = found_exam_auth_id AND (
               (type = 'phys' AND result >= 70)
            OR (type = 'intelligent' AND result >= 70)
-        )
-        GROUP BY type;
+        );
 
         IF passed_both THEN
             INSERT INTO hero_profile(person_id, exam_auth_id, nickname, auth_date, without_exam, extra_information)
